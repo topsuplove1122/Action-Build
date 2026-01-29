@@ -1030,7 +1030,7 @@ jobs:
         if: ${{ github.event.inputs.KPM == 'KPM' }}
         run: |
           # PATCH_DIR="${GITHUB_WORKSPACE}/kernel_workspace/SukiSU_patch/kpm"
-          PATCH_DIR="${GITHUB_WORKSPACE}/kernel_workspace/Action-Build/patches"
+          PATCH_DIR="${GITHUB_WORKSPACE}/Action-Build/patches"
           OUT_DIR="${GITHUB_WORKSPACE}/kernel_workspace/out/Final-Image-Find"
           cd "${OUT_DIR}"
           cp "${PATCH_DIR}/patch_linux" .
