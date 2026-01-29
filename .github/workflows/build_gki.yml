@@ -6,7 +6,7 @@ on:
         type: choice
         description: "配置文件"
         required: true
-        default: android15-6.6
+        default: android15-6.6-2025-10
         options:
           - android15-6.6-2025-10
           - android16-6.12-2025-06
@@ -914,6 +914,11 @@ jobs:
         run: |
           echo "Disabling GPUEB for MTK kernel 5.10"
           sed -i '/obj-y.*gpueb/d' kernel_workspace/kernel-5.10/drivers/gpu/mediatek/Makefile
+
+      - name: Fix SUSFS header
+        if: ${{ github.event.inputs.FAST_BUILD == 'android15-6.6-2025-10' }}
+        run: |
+          sed -i '/#include "fd.h"/a #include <linux/susfs.h>' kernel_workspace/common/fs/proc/base.c
 
       - name: Build Kernel FAST
         if: ${{ github.event.inputs.FAST_BUILD == 'true' }}
