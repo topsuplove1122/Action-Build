@@ -308,8 +308,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "Numbersf"
-          git config --global user.email "263623064@qq.com"
+          git config --global user.name "Reeky"
+          git config --global user.email "topsuplove1122@gmail.com"
 
       - name: Install Dependencies + APTC
         uses: awalsh128/cache-apt-pkgs-action@latest 
@@ -428,9 +428,9 @@ jobs:
           FAST_BUILD="${{ github.event.inputs.FAST_BUILD }}"
 
           for path in \
-            kernel_platform/common/scripts/setlocalversion \
-            kernel_platform/msm-kernel/scripts/setlocalversion \
-            kernel_platform/external/dtc/scripts/setlocalversion; do
+            common/scripts/setlocalversion \
+            msm-kernel/scripts/setlocalversion \
+            external/dtc/scripts/setlocalversion; do
 
             [ -f "$path" ] || continue
 
@@ -482,9 +482,9 @@ jobs:
           RANDOM_SUFFIX="${RANDOM_DIGIT}-o-g${RANDOM_HASH}"
 
           for path in \
-            kernel_platform/common/scripts/setlocalversion \
-            kernel_platform/msm-kernel/scripts/setlocalversion \
-            kernel_platform/external/dtc/scripts/setlocalversion; do
+            common/scripts/setlocalversion \
+            msm-kernel/scripts/setlocalversion \
+            external/dtc/scripts/setlocalversion; do
 
             [ -f "$path" ] || continue
 
@@ -966,7 +966,7 @@ jobs:
           echo "✅ CLANG_PATH=$CLANG_PATH"
           echo "✅ USE_LLVM_IAS=$USE_LLVM_IAS"
 
-          export PATH="$GITHUB_WORKSPACE/kernel_workspace/kernel_platform/$CLANG_PREBUILT_BIN:$PATH"
+          export PATH="$GITHUB_WORKSPACE/kernel_workspace/$CLANG_PREBUILT_BIN:$PATH"
           export PATH="/usr/lib/ccache:$PATH"
           export CC="ccache clang"
           sudo apt install -y libelf-dev ccache
@@ -1147,7 +1147,7 @@ jobs:
           target="./ZRAM-Module/zram/zram.ko"
           echo "查找 zram.ko 模块文件..."
           search_paths=(
-            "./kernel_workspace/kernel_platform/out"
+            "./kernel_workspace/out"
             "./kernel_workspace/device/qcom"
           )
           zram_path=""
