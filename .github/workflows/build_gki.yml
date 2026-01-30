@@ -1000,12 +1000,12 @@ jobs:
         if: ${{ github.event.inputs.FAST_BUILD == 'false' || steps.fast_build.outputs.fallback == 'true' }}
         run: |
           cd kernel_workspace
-          if [ -f ./kernel_platform/build_with_bazel.py ]; then
-            ./kernel_platform/oplus/bazel/oplus_modules_variant.sh ${{ env.CPUD }} ${{ env.BUILD_METHOD }}
-            ./kernel_platform/build_with_bazel.py -t ${{ env.CPUD }} ${{ env.BUILD_METHOD }}
+          set -ex
+          if [ -f "build/build.sh" ]; then
+            LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh || exit 1
           else
-            LTO=thin SYSTEM_DLKM_RE_SIGN=0 BUILD_SYSTEM_DLKM=0 KMI_SYMBOL_LIST_STRICT_MODE=0 \
-            ./kernel_platform/oplus/build/oplus_build_kernel.sh ${{ env.CPUD }} ${{ env.BUILD_METHOD }}
+              tools/bazel build --config=fast --lto=none //common:kernel_aarch64_dist || exit 1
+            fi
           fi
 
       - name: Make AnyKernel3
