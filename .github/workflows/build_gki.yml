@@ -9,6 +9,7 @@ on:
         default: android15-6.6-2025-10
         options:
           - android15-6.6-2025-10
+          - android15-6.6-2025-03
           - android16-6.12-2025-06
       MANAGER_SOURCE:
         type: choice
