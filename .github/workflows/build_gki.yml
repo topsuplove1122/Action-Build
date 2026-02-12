@@ -517,8 +517,8 @@ jobs:
             chmod +x "$path"
           done
 
-          git add -A
-          git commit -m "Random suffix & remove -dirty"
+          # git add -A
+          # git commit -m "Random suffix & remove -dirty"
 
       - name: Add SukiSU Ultra
         run: |
