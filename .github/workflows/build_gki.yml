@@ -8,6 +8,7 @@ on:
         required: true
         default: android15-6.6-2025-10
         options:
+          - android12-5.10-2024-11
           - android15-6.6-2025-10
           - android15-6.6-2025-03
           - android16-6.12-2025-06
