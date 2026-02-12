@@ -597,8 +597,10 @@ jobs:
           echo "KSUVER=$KSU_VERSION" >> $GITHUB_ENV
 
           echo "::group::最终 Kbuild 中版本信息及部分调试结果预览"
-          grep -A10 "REPO_OWNER" kernel/Kbuild
-          grep "KSU_VERSION_FULL" kernel/Kbuild
+          grep -A10 "REPO_OWNER" kernel/Kbuild || true
+
+          grep "KSU_VERSION_FULL" kernel/Kbuild || true
+
           echo "::endgroup::"
 
       - name: Apply Patches SukiSU Ultra
